@@ -62,13 +62,13 @@ if(MUMPS_parallel)
   # avoid MPICH -fallow flag leakage
   set(NUMERIC_INC ${MPI_Fortran_INCLUDE_DIRS})
   list(APPEND NUMERIC_LIBS ${MPI_Fortran_LIBRARIES} MPI::MPI_C)
-
-  if(MUMPS_openmp)
-    find_package(OpenMP COMPONENTS C Fortran REQUIRED)
-    list(APPEND NUMERIC_LIBS OpenMP::OpenMP_Fortran OpenMP::OpenMP_C)
-  endif()
 else()
   include(cmake/lapack.cmake)
+endif()
+
+if(MUMPS_openmp)
+  find_package(OpenMP COMPONENTS C Fortran REQUIRED)
+  list(APPEND NUMERIC_LIBS OpenMP::OpenMP_Fortran OpenMP::OpenMP_C)
 endif()
 
 # GEMMT is recommended in MUMPS User Manual if available
