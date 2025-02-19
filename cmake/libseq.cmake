@@ -11,7 +11,7 @@ foreach(t mpiseq_C mpiseq_FORTRAN mpiseq)
 
   target_include_directories(${t} PUBLIC
   "$<BUILD_INTERFACE:${_l}>"
-  $<INSTALL_INTERFACE:include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   )
 
 endforeach()
@@ -20,7 +20,7 @@ set_property(TARGET mpiseq PROPERTY EXPORT_NAME MPISEQ)
 
 install(TARGETS mpiseq EXPORT ${PROJECT_NAME}-targets)
 
-install(FILES ${_l}elapse.h ${_l}mpi.h ${_l}mpif.h TYPE INCLUDE)
+#install(FILES ${_l}elapse.h ${_l}mpi.h ${_l}mpif.h TYPE INCLUDE)
 
 set(NUMERIC_INC ${_l})
-list(APPEND NUMERIC_LIBS mpiseq)
+list(APPEND MPI_LIBS mpiseq)

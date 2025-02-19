@@ -41,10 +41,16 @@ include(cmake/compilers.cmake)
 message(STATUS "${PROJECT_NAME} ${PROJECT_VERSION} upstream ${MUMPS_UPSTREAM_VERSION} install prefix: ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "CMake ${CMAKE_VERSION}  Toolchain ${CMAKE_TOOLCHAIN_FILE}")
 
+if(NOT DEFINED ENABLE_LIBCXX OR NOT CMAKE_INSTALL_INCLUDEDIR STREQUAL "")
+  set(CMAKE_INSTALL_INCLUDEDIR "include")
+endif()
+
 # --- dependencies
 find_package(Threads)
 
 # -- Scalapack / MPI
+
+set(MPI_LIBS)
 
 if(MUMPS_parallel)
   find_package(MPI COMPONENTS C Fortran REQUIRED)

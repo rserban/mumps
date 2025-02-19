@@ -132,6 +132,7 @@ foreach(t IN ITEMS mumps_common mumps_common_C mumps_common_Fortran)
   )
 
   target_link_libraries(${t} PUBLIC ${ORDERING_LIBS} ${NUMERIC_LIBS})
+  target_link_libraries(${t} PRIVATE ${MPI_LIBS})
 
   target_compile_definitions(${t} PRIVATE
   ${ORDERING_DEFS}
